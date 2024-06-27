@@ -12,7 +12,7 @@ const HomePage = () => {
       <Banner />
       <HeroSection />
       <div className="bg-white h-5"></div>
-      <div className="bg-[url(https://scooboo.in/cdn/shop/files/doorstep_delivery-footer-wt.jpg?v=1716264660&width=2400)] h-[250px] bg-cover bg-center bg-no-repeat mb-8 md:h-[600px] justify-end">
+      {/* <div className="bg-[url(https://scooboo.in/cdn/shop/files/doorstep_delivery-footer-wt.jpg?v=1716264660&width=2400)] h-[250px] bg-cover bg-center bg-no-repeat mb-8 md:h-[600px] justify-end">
         <div className="col-end-2 ps-96 ms-96">
           <h1 className="w-full text-right pe-32 text-4xl	pt-24 font-bold	text-white">
             STATIONERY AT YOUR CLASS
@@ -28,7 +28,7 @@ const HomePage = () => {
             Shop now <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
-      </div>
+      </div> */}
       <Pfeature/>
       <Team/>
       <ContactUs/>
