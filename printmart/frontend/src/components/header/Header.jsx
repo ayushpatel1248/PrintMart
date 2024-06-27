@@ -24,7 +24,9 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
-import logo from "../../images/logo.png"
+import logo from "../../images/logo.png";
+import { Link, Navigate } from "react-router-dom";
+
 const products = [
   {
     name: "Analytics",
@@ -57,6 +59,7 @@ const products = [
     icon: ArrowPathIcon,
   },
 ];
+
 const callsToAction = [
   { name: "Watch demo", href: "#", icon: PlayCircleIcon },
   { name: "Contact sales", href: "#", icon: PhoneIcon },
@@ -76,14 +79,10 @@ export default function Header() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
-              className="h-4 w-auto"
-              src={logo}
-              alt=""
-            />
-          </a>
+            <img className="h-4 w-auto" src={logo} alt="" />
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -100,12 +99,15 @@ export default function Header() {
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               All Products
             </PopoverButton>
-
           </Popover>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            className="text-sm font-semibold leading-6 text-gray-900"
+            to="/printout"
+          >
             Printout
-          </a>
+          </Link>
+
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Orders
           </a>
@@ -116,7 +118,8 @@ export default function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Log in <span aria-hidden="true"></span>
-          </a> |
+          </a>{" "}
+          |
           <a href="#" className="text-sm font-semibold leading-6 text-red-500">
             Sign up <span aria-hidden="true"></span>
           </a>
@@ -130,14 +133,10 @@ export default function Header() {
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src={logo}
-                alt=""
-              />
-            </a>
+              <img className="h-8 w-auto" src={logo} alt="" />
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -159,12 +158,12 @@ export default function Header() {
                     </>
                   )}
                 </Disclosure>
-                <a
-                  href="#"
+                <Link
+                  to="/printout"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Printout
-                </a>
+                </Link>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -176,7 +175,6 @@ export default function Header() {
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   About Us
-
                 </a>
               </div>
               <div className="py-6">
