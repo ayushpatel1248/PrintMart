@@ -165,7 +165,7 @@ export default function Header() {
                   {({ open }) => (
                     <>
                       <DisclosureButton className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        <Link to="allproducts">All Products</Link>
+                        <Link to="/allproducts">All Products</Link>
                       </DisclosureButton>
                     </>
                   )}
