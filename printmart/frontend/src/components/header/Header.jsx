@@ -26,6 +26,7 @@ import {
 } from "@heroicons/react/20/solid";
 import logo from "../../images/logo.png";
 import { Link, Navigate } from "react-router-dom";
+import AllProducts from "../allproducts/AllProducts";
 
 const products = [
   {
@@ -97,7 +98,7 @@ export default function Header() {
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              All Products
+              <Link to="allproducts">All Products</Link>
             </PopoverButton>
           </Popover>
 
@@ -116,13 +117,19 @@ export default function Header() {
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            to="/login"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Log in <span aria-hidden="true"></span>
-          </a>{" "}
+          </Link>{" "}
           |
-          <a href="#" className="text-sm font-semibold leading-6 text-red-500">
+          <Link
+            to="/register"
+            className="text-sm font-semibold leading-6 text-red-500"
+          >
             Sign up <span aria-hidden="true"></span>
-          </a>
+          </Link>
         </div>
       </nav>
       <Dialog
@@ -153,7 +160,7 @@ export default function Header() {
                   {({ open }) => (
                     <>
                       <DisclosureButton className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        All Products
+                        <Link to="allproducts">All Products</Link>
                       </DisclosureButton>
                     </>
                   )}
