@@ -7,6 +7,7 @@ import Register from './components/Register/Register';
 import { Link, Navigate } from "react-router-dom";
 import AllProducts from './components/allproducts/AllProducts';
 import Product from './components/singleProduct/Product';
+import AboutUs from './components/aboutus/AboutUs';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/register" element= {<Register/>} />        
         <Route path="/allproducts" element= {<AllProducts/>} />        
         <Route path="/product" element= {<Product/>} />        
+        <Route path="/aboutus" element= {<AboutUs/>} />        
       </Routes>
     </BrowserRouter>
   );

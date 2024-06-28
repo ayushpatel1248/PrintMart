@@ -96,11 +96,13 @@ export default function Header() {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              <Link to="allproducts">All Products</Link>
-            </PopoverButton>
-          </Popover>
+          <Link to="/allproducts" className="text-sm font-semibold leading-6 text-gray-900">
+            {/* <Popover className="relative">
+              <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"> */}
+                All Products
+              {/* </PopoverButton>
+            </Popover> */}
+          </Link>
 
           <Link
             className="text-sm font-semibold leading-6 text-gray-900"
@@ -112,9 +114,12 @@ export default function Header() {
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Orders
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            to="/aboutus"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             About Us
-          </a>
+          </Link>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
