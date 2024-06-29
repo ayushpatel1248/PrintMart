@@ -8,6 +8,7 @@ import { Link, Navigate } from "react-router-dom";
 import AllProducts from './components/allproducts/AllProducts';
 import Product from './components/singleProduct/Product';
 import AboutUs from './components/aboutus/AboutUs';
+import OrderHistory from './components/orders/OrderHistory';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/allproducts" element= {<AllProducts/>} />        
         <Route path="/product" element= {<Product/>} />        
         <Route path="/aboutus" element= {<AboutUs/>} />        
+        <Route path="/orderhistory" element= {<OrderHistory/>} />        
       </Routes>
     </BrowserRouter>
   );

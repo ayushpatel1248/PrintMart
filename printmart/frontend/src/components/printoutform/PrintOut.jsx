@@ -315,6 +315,27 @@ export default function PrintOut() {
                   </select>
                 </div>
               </div>
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="colortype"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Page size
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="PrintSide"
+                    name="PrintSide"
+                    autoComplete="PrintSide"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                  >
+                    <option>A4</option>
+                    <option>A5</option>
+                    <option>A3</option>
+                    <option>A6</option>
+                  </select>
+                </div>
+              </div>
 
               <div className="border-b border-gray-900/10 pb-12">
                 <div className="mt-10 space-y-10">

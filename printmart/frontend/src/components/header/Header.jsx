@@ -111,9 +111,9 @@ export default function Header() {
             Printout
           </Link>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to="/orderhistory" className="text-sm font-semibold leading-6 text-gray-900">
             Orders
-          </a>
+          </Link>
           <Link
             to="/aboutus"
             className="text-sm font-semibold leading-6 text-gray-900"
@@ -123,12 +123,12 @@ export default function Header() {
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
-            to="/login"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            to="/Admin Login"
+            className="text-sm font-semibold leading-6 text-grey-900"
           >
             Log in <span aria-hidden="true"></span>
           </Link>{" "}
-          |
+          /
           <Link
             to="/register"
             className="text-sm font-semibold leading-6 text-red-500"
@@ -176,12 +176,12 @@ export default function Header() {
                 >
                   Printout
                 </Link>
-                <a
-                  href="#"
+                <Link
+                  to="/orderhistory"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Orders
-                </a>
+                </Link>
                 <Link to="/aboutus"
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -190,14 +190,13 @@ export default function Header() {
                 </Link>
               </div>
               <div className="py-6">
-                <Link to="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                <Link to="login"
+                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-red-50"
                 >
                   Log in
                 </Link>
                 <Link
-                to="/register"
-                  href="#"
+                to="register"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Sign up
