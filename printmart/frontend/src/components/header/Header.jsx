@@ -123,7 +123,7 @@ export default function Header() {
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
-            to="/Admin Login"
+            to="/login"
             className="text-sm font-semibold leading-6 text-grey-900"
           >
             Log in <span aria-hidden="true"></span>
