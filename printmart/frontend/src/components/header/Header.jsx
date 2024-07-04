@@ -26,7 +26,6 @@ import {
 } from "@heroicons/react/20/solid";
 import logo from "../../images/logo.png";
 import { Link, Navigate } from "react-router-dom";
-import AllProducts from "../allproducts/AllProducts";
 
 const products = [
   {
