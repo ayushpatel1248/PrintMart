@@ -6,15 +6,19 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
 export default function Login() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   var navigate = useNavigate();
   const notify = (mes) => toast.error(mes);
 
-  const sumbitLoginHandle = async () => {
+  const sumbitLoginHandle = async (e) => {
     try {
-        const BASE_URL = process.env.REACT_APP_BASE_URL;
+      e.preventDefault();
+      console.log("you are above base url")
         console.log(BASE_URL)
         axios.post(`${BASE_URL}/login`, { email, password }).then((res) => {
             console.log(res.data.status)
@@ -37,6 +41,7 @@ export default function Login() {
 
   return (
     <div className="">
+      {console.log(password,email)}
       <div className="flex min-h-full flex-1 flex-col justify-center mx-auto mt-24 px-2 py-12 w-4/5 lg:w-1/3 lg:px-2 border-2 bg-[#f1f5f9] rounded">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Link to="/">
@@ -48,7 +53,7 @@ export default function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={(e)=>sumbitLoginHandle(e)}>
             <div>
               <label
                 htmlFor="email"
@@ -102,7 +107,6 @@ export default function Login() {
             <div>
               <button
                 type="submit"
-                onClick={sumbitLoginHandle}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
