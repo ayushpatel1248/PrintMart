@@ -1,72 +1,15 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        gridTemplateRows: {
-          '[auto,auto,1fr]': 'auto auto 1fr',
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
 import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Radio, RadioGroup } from '@headlessui/react'
 import Header from '../header/Header'
+import axios from 'axios'
+import { Navigate, useParams } from "react-router-dom";
+import { useEffect } from 'react'
 
-const product = {
-  name: 'Classmate copy',
-  price: '100R',
-  href: '#',
-  images: [
-    {
-      src: 'https://scooboo.in/cdn/shop/products/classmate-pulse-6-subject-notebook-b5ruledclassmatescooboo02100117ps8902519001177-969669.jpg?v=1667525100&width=1125',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://scooboo.in/cdn/shop/products/classmate-pulse-6-subject-notebook-b5ruledclassmatescooboo02100117ps8902519001177-969669.jpg?v=1667525100&width=1125',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://scooboo.in/cdn/shop/products/classmate-pulse-6-subject-notebook-b5ruledclassmatescooboo02100117ps8902519001177-969669.jpg?v=1667525100&width=1125',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: 'https://scooboo.in/cdn/shop/products/classmate-pulse-6-subject-notebook-b5ruledclassmatescooboo02100117ps8902519001177-969669.jpg?v=1667525100&width=1125',
-      alt: 'Model wearing plain white basic tee.',
-    },
-  ],
-  colors: [
-    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-  ],
-  quantity: [
-    { name: '1', inStock: true },
-    { name: '2', inStock: true },
-    { name: '3', inStock: true },
-    { name: '4', inStock: true },
-    { name: '5', inStock: true },
-    { name: '6', inStock: true },
-    { name: '7', inStock: true },
-    { name: '8', inStock: true },
-  ],
-  description:
-    'Classmate Spiral notebooks which are made to the highest quality standards The pages are whiter, brighter and smoother. The notebook is divided into 6 parts to facilitate the user. ',
-  highlights: [
-    'The superior cut and excellent finish ensure the pages are in perfect alignment without any folded corners',
-  ],
-  details:
-    'The superior binding strength and wrapper lamination make them as durable as ever.',
-}
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
 function classNames(...classes) {
@@ -74,43 +17,58 @@ function classNames(...classes) {
 }
 
 export default function Product() {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0])
-  const [selectedSize, setSelectedSize] = useState(product.quantity[2])
+  const [product, setProducts] = useState([])
+  const [selectedSize, setSelectedSize] = useState()
+  let {_id} = useParams();
+
+
+  const getProductInfo = async (_id)=>{
+    try {
+      const response = await axios.post(`${BASE_URL}/getSingleProduct`, {_id});
+      setProducts(response.data.data);
+      console.log("this is dat a= ", response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+  useEffect(()=>{
+    getProductInfo(_id)
+  })
 
   return (
     <>
     <Header/>
-    <div className="bg-white">
+    {product.length<1? <h1>loading</h1> : <div className="bg-white">
       <div className="pt-6">
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-4xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
             <img
-              src={product.images[0].src}
-              alt={product.images[0].alt}
+              src={product.images[0]}
+              alt={product.images[0]}
               className="h-full w-full object-cover object-center"
             />
           </div>
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[1].src}
-                alt={product.images[1].alt}
+                src={product.images[0]}
+                alt={product.images[0]}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[2].src}
-                alt={product.images[2].alt}
+                src={product.images[0]}
+                alt={product.images[0]}
                 className="h-full w-full object-cover object-center"
               />
             </div>
           </div>
           <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
             <img
-              src={product.images[3].src}
-              alt={product.images[3].alt}
+              src={product.images[0]}
+              alt={product.images[0]}
               className="h-full w-full object-cover object-center"
             />
           </div>
@@ -165,52 +123,6 @@ export default function Product() {
                     onChange={setSelectedSize}
                     className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
                   >
-                    {product.quantity.map((size) => (
-                      <Radio
-                        key={size.name}
-                        value={size}
-                        disabled={!size.inStock}
-                        className={({ focus }) =>
-                          classNames(
-                            size.inStock
-                              ? 'cursor-pointer bg-white text-gray-900 shadow-sm'
-                              : 'cursor-not-allowed bg-gray-50 text-gray-200',
-                            focus ? 'ring-2 ring-indigo-500' : '',
-                            'group relative flex items-center justify-center rounded-md border px-4 py-3 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6',
-                          )
-                        }
-                      >
-                        {({ checked, focus }) => (
-                          <>
-                            <span>{size.name}</span>
-                            {size.inStock ? (
-                              <span
-                                className={classNames(
-                                  checked ? 'border-indigo-500' : 'border-transparent',
-                                  focus ? 'border' : 'border-2',
-                                  'pointer-events-none absolute -inset-px rounded-md',
-                                )}
-                                aria-hidden="true"
-                              />
-                            ) : (
-                              <span
-                                aria-hidden="true"
-                                className="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200"
-                              >
-                                <svg
-                                  className="absolute inset-0 h-full w-full stroke-2 text-gray-200"
-                                  viewBox="0 0 100 100"
-                                  preserveAspectRatio="none"
-                                  stroke="currentColor"
-                                >
-                                  <line x1={0} y1={100} x2={100} y2={0} vectorEffect="non-scaling-stroke" />
-                                </svg>
-                              </span>
-                            )}
-                          </>
-                        )}
-                      </Radio>
-                    ))}
                   </RadioGroup>
                 </fieldset>
               </div>
@@ -239,11 +151,11 @@ export default function Product() {
 
               <div className="mt-4">
                 <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                  {product.highlights.map((highlight) => (
+                  {/* {product.highlights.map((highlight) => (
                     <li key={highlight} className="text-gray-400">
                       <span className="text-gray-600">{highlight}</span>
                     </li>
-                  ))}
+                  ))} */}
                 </ul>
               </div>
             </div>
@@ -252,13 +164,14 @@ export default function Product() {
               <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
               <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">{product.details}</p>
+                {/* <p className="text-sm text-gray-600">{product.details}</p> */}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>}
+    
     </>
   )
 }

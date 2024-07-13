@@ -47,7 +47,7 @@ ProductServices.getSingleProduct = async (_id) => {
     return {
       status: "ok",
       msg: "product found",
-      data: productsData[0],
+      data: productsData,
     };
   }
 };
