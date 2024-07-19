@@ -2,8 +2,10 @@ import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import Header from "../header/Header";
 import { useEffect, useState } from "react";
 import OrderConfirmed from "../orderConfirmed/OrderConfirmed";
+import { useNavigate } from "react-router-dom";
 
 export default function PrintOut() {
+  var authorization = localStorage.getItem("authorization")
   const [regNo, setRegNo] = useState("");
   const [fullAddress, setFullAddress] = useState("");
   const [description, setDescription] = useState("");
@@ -14,34 +16,46 @@ export default function PrintOut() {
   const [pageSize, setPageSize] = useState("A4");
   const [isOrderDone, setIsOrderDone] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isUserLogin, setIsUserLogin] = useState(false);
+  var navigate = useNavigate();
+
+  const authcheck = () => {
+    if(!authorization){
+      navigate('/login')
+    }
+  };
+  useEffect(() => {
+    authcheck();
+  }, []);
+
   const pricelist = {
     blackandwhiteAndbothside: 2,
     colorAndbothside: 5,
     blackandwhiteAndsingleside: 5,
     colorAndsingleside: 10,
   };
-useEffect(()=>{
-  console.log(totalPrice, numberOfPages, printSide, colorType)
+  useEffect(() => {
+    console.log(totalPrice, numberOfPages, printSide, colorType);
     if (
       printSide == "One side" &&
       colorType == "Black and White (2 rupee page)"
     ) {
-      setTotalPrice( numberOfPages * pricelist.blackandwhiteAndsingleside);
+      setTotalPrice(numberOfPages * pricelist.blackandwhiteAndsingleside);
     } else if (
       printSide == "Both side" &&
       colorType == "Black and White (2 rupee page)"
     ) {
-      setTotalPrice( numberOfPages * pricelist.blackandwhiteAndbothside);
+      setTotalPrice(numberOfPages * pricelist.blackandwhiteAndbothside);
     } else if (
       printSide == "One side" &&
       colorType == "Color Print (5 rupee per page)"
     ) {
-      setTotalPrice( numberOfPages * pricelist.colorAndsingleside);
+      setTotalPrice(numberOfPages * pricelist.colorAndsingleside);
     } else {
-      setTotalPrice( numberOfPages * pricelist.colorAndbothside);
+      setTotalPrice(numberOfPages * pricelist.colorAndbothside);
     }
-},[totalPrice, numberOfPages, printSide, colorType])
-  
+  }, [totalPrice, numberOfPages, printSide, colorType]);
+
   return (
     <>
       {isOrderDone ? (
@@ -320,3 +334,5 @@ useEffect(()=>{
     </>
   );
 }
+
+
