@@ -96,11 +96,7 @@ export default function Header() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <Link to="/allproducts" className="text-sm font-semibold leading-6 text-gray-900">
-            {/* <Popover className="relative">
-              <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"> */}
                 All Products
-              {/* </PopoverButton>
-            </Popover> */}
           </Link>
 
           <Link
