@@ -292,20 +292,6 @@ export default function PrintOut() {
                             ::
                             <h2>Total Price = {totalPrice}Rs</h2>
                           </div>
-                          {/* <div className="flex items-center gap-x-3">
-                                <input
-                                  id="push-email"
-                                  type="radio"
-                                  className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                  required
-                                />
-                                <label
-                                  htmlFor="push-email"
-                                  className="block text-sm font-medium leading-6 text-gray-900"
-                                >
-                                  Online Payment Using UPI
-                                </label>
-                              </div> */}
                         </div>
                       </fieldset>
                     </div>
