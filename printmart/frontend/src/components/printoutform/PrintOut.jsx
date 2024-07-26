@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import OrderConfirmed from "../orderConfirmed/OrderConfirmed";
 import { useNavigate } from "react-router-dom";
 
+
 export default function PrintOut() {
   var authorization = localStorage.getItem("authorization")
   const [regNo, setRegNo] = useState("");
